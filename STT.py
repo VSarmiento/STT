@@ -23,7 +23,9 @@ def recordCallback(indata, frames, time, status):
     q.put(bytes(indata))
 
 # build the model and recognizer objects.
+# download vosk-model-en-us-0.22 from https://alphacephei.com/vosk/models and name the file model
 print("===> Build the model and recognizer objects.  This will take a few minutes.")
+#replace the file path to where model is saved
 model = Model(r"C:\Users\vahl_\Projects\STT\model")
 recognizer = KaldiRecognizer(model, samplerate)
 recognizer.SetWords(False)
@@ -42,6 +44,7 @@ try:
                 resultDict = json.loads(recognizerResult)
                 if not resultDict.get("text", "") == "":
                     print(recognizerResult)
+                    #Print into text file most recent result
                     with open('test.txt', 'w') as f:
                         f.write(recognizerResult)
                         f.write('\n')
