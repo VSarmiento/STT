@@ -42,6 +42,9 @@ try:
                 resultDict = json.loads(recognizerResult)
                 if not resultDict.get("text", "") == "":
                     print(recognizerResult)
+                    with open('test.txt', 'w') as f:
+                        f.write(recognizerResult)
+                        f.write('\n')
                 else:
                     print("no input sound")
 
